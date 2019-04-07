@@ -13,16 +13,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     @IBOutlet weak var tableView: UITableView!
     
+    //referencia para instanciar/chamar dados firebse
     var referencia: DatabaseReference?
+    
+    //listener
     var databaseHandle: DatabaseHandle?
     var textoDabaseHandle: DatabaseHandle?
     
+    //array vazio para receber valor do firebase com apend
     var listaFirebase = [String]()
     var listaFireBaseTexto = [String]()
-
-    
-    var lista = [ "Endereco IP", "Atalho selecionar"]
-    
     
 //    var lista = [(titulo: "Endereco IP", texto: "Digite o comando ifconfig no terminal e tecle enter"),
 //               (titulo: "Atalho selecionar", texto: "shift + optional seta para cima ou para baixo")]
@@ -33,11 +33,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         tableView.delegate = self
         tableView.dataSource = self
-        
+       
+        //criando a referencia
         referencia = Database.database().reference()
         
         databaseHandle = referencia?.child("contexto").observe(.childAdded, with: { (dados) in
 
+            //conversao de dados
             let contexto = dados.value as? NSDictionary
 
             if let meuContexto = contexto {
@@ -50,6 +52,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         })
         
+        //listener do campo DetailTexto do tableView
         textoDabaseHandle = referencia?.child("contexto").observe(.childAdded, with: { (snapshot) in
             
             let contextoConteudo = snapshot.value as? NSDictionary
@@ -61,17 +64,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
         })
 
-          print("teste de array: \(listaFirebase)")
-
+        //Adicionando dados no RealtimeDataBase
 //        let dadosTitulo = referencia?.child("contexto").child("004").child("titulo")
 //        let dadosTexto = referencia?.child("contexto").child("004").child("texto")
 //        dadosTexto?.setValue("Com ajuda da documentacao converti os dadosFirebase oara NSDictionary, converti o mesmo para array de String no if let")
 //        dadosTitulo?.setValue("Finalmente Listantdo")
-        
-
 
     }
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listaFirebase.count
@@ -82,14 +81,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let linha = indexPath.row
         celula.textLabel?.text = listaFirebase[linha]
         celula.detailTextLabel?.text = listaFireBaseTexto[linha]
-
-        
         
         return celula
     }
     
     
-
-
 }
 

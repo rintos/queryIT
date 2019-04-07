@@ -15,8 +15,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var referencia: DatabaseReference?
     var databaseHandle: DatabaseHandle?
+    var textoDabaseHandle: DatabaseHandle?
     
     var listaFirebase = [String]()
+    var listaFireBaseTexto = [String]()
 
     
     var lista = [ "Endereco IP", "Atalho selecionar"]
@@ -39,21 +41,32 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let contexto = dados.value as? NSDictionary
 
             if let meuContexto = contexto {
-                let tituloFirebase = meuContexto["titulo"] as? String ?? ""
-                self.listaFirebase.append(tituloFirebase)
+                let dadosConvertido = meuContexto["titulo"] as? String ?? ""
+                self.listaFirebase.append(dadosConvertido)
                 self.tableView.reloadData()
 
             }
 
 
         })
+        
+        textoDabaseHandle = referencia?.child("contexto").observe(.childAdded, with: { (snapshot) in
+            
+            let contextoConteudo = snapshot.value as? NSDictionary
+            
+            if let meuContextoConteudo = contextoConteudo {
+                let conteudoConvertido = meuContextoConteudo["texto"] as? String ?? ""
+                self.listaFireBaseTexto.append(conteudoConvertido)
+                self.tableView.reloadData()
+            }
+        })
 
           print("teste de array: \(listaFirebase)")
 
-        let dadosTitulo = referencia?.child("contexto").child("003").child("titulo")
-        let dadosTexto = referencia?.child("contexto").child("003").child("texto")
-        dadosTexto?.setValue("3Tesxto teste titulo 203")
-        dadosTitulo?.setValue("3titulo teste 03")
+//        let dadosTitulo = referencia?.child("contexto").child("004").child("titulo")
+//        let dadosTexto = referencia?.child("contexto").child("004").child("texto")
+//        dadosTexto?.setValue("Com ajuda da documentacao converti os dadosFirebase oara NSDictionary, converti o mesmo para array de String no if let")
+//        dadosTitulo?.setValue("Finalmente Listantdo")
         
 
 
@@ -68,7 +81,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let celula = tableView.dequeueReusableCell(withIdentifier: "celulaID", for: indexPath)
         let linha = indexPath.row
         celula.textLabel?.text = listaFirebase[linha]
-        celula.detailTextLabel?.text = listaFirebase[linha]
+        celula.detailTextLabel?.text = listaFireBaseTexto[linha]
 
         
         

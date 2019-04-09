@@ -13,16 +13,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     @IBOutlet weak var tableView: UITableView!
     
+    var dadosLista = [Conteudo]()
+    
     //referencia para instanciar/chamar dados firebse
     var referencia: DatabaseReference?
     
     //listener
-    var databaseHandle: DatabaseHandle?
     var textoDabaseHandle: DatabaseHandle?
-    
-    //array vazio para receber valor do firebase com apend
-    var listaFirebase = [String]()
-    var listaFireBaseTexto = [String]()
     
 //    var lista = [(titulo: "Endereco IP", texto: "Digite o comando ifconfig no terminal e tecle enter"),
 //               (titulo: "Atalho selecionar", texto: "shift + optional seta para cima ou para baixo")]
@@ -30,61 +27,56 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         tableView.delegate = self
         tableView.dataSource = self
        
         //criando a referencia
         referencia = Database.database().reference()
         
-        databaseHandle = referencia?.child("contexto").observe(.childAdded, with: { (dados) in
-
-            //conversao de dados
-            let contexto = dados.value as? NSDictionary
-
-            if let meuContexto = contexto {
-                let dadosConvertido = meuContexto["titulo"] as? String ?? ""
-                self.listaFirebase.append(dadosConvertido)
-                self.tableView.reloadData()
-
-            }
-
-
-        })
-        
         //listener do campo DetailTexto do tableView
-        textoDabaseHandle = referencia?.child("contexto").observe(.childAdded, with: { (snapshot) in
+        textoDabaseHandle = referencia?.child("contexto").observe(DataEventType.value, with: { (snapshot) in if snapshot.childrenCount>0 {
             
-            let contextoConteudo = snapshot.value as? NSDictionary
+          //  let contextoConteudo = snapshot.value as? NSDictionary
             
-            if let meuContextoConteudo = contextoConteudo {
-                let conteudoConvertido = meuContextoConteudo["texto"] as? String ?? ""
-                self.listaFireBaseTexto.append(conteudoConvertido)
-                self.tableView.reloadData()
+            for dados in snapshot.children.allObjects as! [DataSnapshot]{
+                let dadosObjeto = dados.value as? [String: AnyObject]
+                if let dadosTitulo = dadosObjeto?["titulo"]{
+                    if let dadosTexto = dadosObjeto?["texto"]{
+                        let textos = Conteudo(titulo: dadosTitulo as! String, texto: dadosTexto as! String)
+                        
+                        self.dadosLista.append(textos)
+                    }
+                }
             }
-        })
+            
+            self.tableView.reloadData()
+        }
 
-        //Adicionando dados no RealtimeDataBase
-//        let dadosTitulo = referencia?.child("contexto").child("004").child("titulo")
-//        let dadosTexto = referencia?.child("contexto").child("004").child("texto")
-//        dadosTexto?.setValue("Com ajuda da documentacao converti os dadosFirebase oara NSDictionary, converti o mesmo para array de String no if let")
-//        dadosTitulo?.setValue("Finalmente Listantdo")
+    })
+
+//        //Adicionando dados no RealtimeDataBase
+//        let dadosTitulo = referencia?.child("contexto").child("005").child("titulo")
+//        let dadosTexto = referencia?.child("contexto").child("005").child("texto")
+//        dadosTexto?.setValue("Alterei o indice do detalhe para indexPath.row pra funcionar")
+//        dadosTitulo?.setValue("erro ao listar")
 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listaFirebase.count
+        return dadosLista.count;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let celula = tableView.dequeueReusableCell(withIdentifier: "celulaID", for: indexPath)
-        let linha = indexPath.row
-        celula.textLabel?.text = listaFirebase[linha]
-        celula.detailTextLabel?.text = listaFireBaseTexto[linha]
+        
+        let dado:Conteudo
+        dado = dadosLista[indexPath.row]
+        
+        celula.textLabel?.text = dado.titulo
+        celula.detailTextLabel?.text = dado.texto
         
         return celula
     }
-    
     
 }
 

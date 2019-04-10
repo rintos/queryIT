@@ -19,7 +19,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var referencia: DatabaseReference?
     
     //listener
-    var textoDabaseHandle: DatabaseHandle?
+    var textoDataBaseHandle: DatabaseHandle?
     
 //    var lista = [(titulo: "Endereco IP", texto: "Digite o comando ifconfig no terminal e tecle enter"),
 //               (titulo: "Atalho selecionar", texto: "shift + optional seta para cima ou para baixo")]
@@ -27,14 +27,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.delegate = self
-        tableView.dataSource = self
+//        tableView.delegate = self
+//        tableView.dataSource = self
        
         //criando a referencia
         referencia = Database.database().reference()
         
         //listener do campo DetailTexto do tableView
-        textoDabaseHandle = referencia?.child("contexto").observe(DataEventType.value, with: { (snapshot) in if snapshot.childrenCount>0 {
+        textoDataBaseHandle = referencia?.child("contexto").observe(DataEventType.value, with: { (snapshot) in if snapshot.childrenCount>0 {
             
           //  let contextoConteudo = snapshot.value as? NSDictionary
             
@@ -42,14 +42,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 let dadosObjeto = dados.value as? [String: AnyObject]
                 if let dadosTitulo = dadosObjeto?["titulo"]{
                     if let dadosTexto = dadosObjeto?["texto"]{
-                        let textos = Conteudo(titulo: dadosTitulo as! String, texto: dadosTexto as! String)
+                        let textos = Conteudo(titulo: dadosTitulo as? String, texto: dadosTexto as? String)
                         
                         self.dadosLista.append(textos)
                     }
                 }
+                self.tableView.reloadData()
             }
             
-            self.tableView.reloadData()
         }
 
     })
@@ -71,11 +71,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let dado:Conteudo
         dado = dadosLista[indexPath.row]
-        
         celula.textLabel?.text = dado.titulo
         celula.detailTextLabel?.text = dado.texto
         
         return celula
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        self.tableView.deselectRow(at: indexPath, animated: true)
+        let dado: Conteudo
+        dado = dadosLista[indexPath.row]
+        
+        if let viewDestino = self.storyboard?.instantiateViewController(withIdentifier: "DetalheViewController") as? DetalheViewController {
+            viewDestino.texto = dado.texto!
+            viewDestino.titulo = dado.titulo!
+            self.navigationController!.pushViewController(viewDestino, animated: true)
+        }
     }
     
 }

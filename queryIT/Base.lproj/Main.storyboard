@@ -71,12 +71,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="916.875" y="130.98591549295776"/>
+            <point key="canvasLocation" x="954" y="131"/>
         </scene>
         <!--Detalhe View Controller-->
         <scene sceneID="uow-G0-GQN">
             <objects>
-                <viewController id="LFe-Yy-Gh0" customClass="DetalheViewController" customModule="queryIT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetalheViewController" id="LFe-Yy-Gh0" customClass="DetalheViewController" customModule="queryIT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wnj-xw-2AO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import RealmSwift
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -34,7 +35,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         referencia = Database.database().reference()
         
         //listener do campo DetailTexto do tableView
-        textoDataBaseHandle = referencia?.child("contexto").observe(DataEventType.value, with: { (snapshot) in if snapshot.childrenCount>0 {
+        textoDataBaseHandle = referencia?.child("contexto").observe(DataEventType.value, with: { (snapshot) in if snapshot.childrenCount > 0 {
             
           //  let contextoConteudo = snapshot.value as? NSDictionary
             
@@ -44,10 +45,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     if let dadosTexto = dadosObjeto?["texto"]{
                         let textos = Conteudo(titulo: dadosTitulo as? String, texto: dadosTexto as? String)
                         
+                        var contextoRealm = ConteudoRealm()
+                        contextoRealm.titulo = dadosTitulo as? String
+                        contextoRealm.texto = dadosTexto as? String
+                        contextoRealm.writeToRealm()
+                        print(contextoRealm)
                         self.dadosLista.append(textos)
+                        self.tableView.reloadData()
                     }
                 }
-                self.tableView.reloadData()
+               
             }
             
         }

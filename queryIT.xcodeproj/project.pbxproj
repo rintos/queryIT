@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,7 +15,10 @@
 		50140EEA22558332009E404C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50140EE922558332009E404C /* GoogleService-Info.plist */; };
 		502E210A225A982300BE82B0 /* DetalheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E2109225A982300BE82B0 /* DetalheViewController.swift */; };
 		502E210C225ACD0900BE82B0 /* Conteudo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502E210B225ACD0900BE82B0 /* Conteudo.swift */; };
-		F51E707DEAAE7E854E41AD44 /* Pods_queryIT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC6782CB762BFE0E7D47C482 /* Pods_queryIT.framework */; };
+		5039A638226566DF000F1AB9 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5039A637226566DF000F1AB9 /* Realm.framework */; };
+		5039A63A226566DF000F1AB9 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5039A639226566DF000F1AB9 /* RealmSwift.framework */; };
+		5039A63C22656BD5000F1AB9 /* ConteudoRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5039A63B22656BD5000F1AB9 /* ConteudoRealm.swift */; };
+		E8D60EE3B5130D56217B9FA5 /* Pods_queryIT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC6782CB762BFE0E7D47C482 /* Pods_queryIT.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		50140EE922558332009E404C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		502E2109225A982300BE82B0 /* DetalheViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetalheViewController.swift; sourceTree = "<group>"; };
 		502E210B225ACD0900BE82B0 /* Conteudo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conteudo.swift; sourceTree = "<group>"; };
+		5039A637226566DF000F1AB9 /* Realm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Realm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5039A639226566DF000F1AB9 /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5039A63B22656BD5000F1AB9 /* ConteudoRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConteudoRealm.swift; sourceTree = "<group>"; };
 		7CB22C7EB7DCFF5DB7E419FD /* Pods-queryIT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-queryIT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-queryIT/Pods-queryIT.debug.xcconfig"; sourceTree = "<group>"; };
 		CC6782CB762BFE0E7D47C482 /* Pods_queryIT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_queryIT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -39,7 +45,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F51E707DEAAE7E854E41AD44 /* Pods_queryIT.framework in Frameworks */,
+				5039A638226566DF000F1AB9 /* Realm.framework in Frameworks */,
+				5039A63A226566DF000F1AB9 /* RealmSwift.framework in Frameworks */,
+				E8D60EE3B5130D56217B9FA5 /* Pods_queryIT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,6 +57,8 @@
 		48E166BDB3B5E0CA72A39FB7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5039A637226566DF000F1AB9 /* Realm.framework */,
+				5039A639226566DF000F1AB9 /* RealmSwift.framework */,
 				CC6782CB762BFE0E7D47C482 /* Pods_queryIT.framework */,
 			);
 			name = Frameworks;
@@ -84,6 +94,7 @@
 				50140EDE22558248009E404C /* LaunchScreen.storyboard */,
 				50140EE122558248009E404C /* Info.plist */,
 				50140EE922558332009E404C /* GoogleService-Info.plist */,
+				5039A63B22656BD5000F1AB9 /* ConteudoRealm.swift */,
 			);
 			path = queryIT;
 			sourceTree = "<group>";
@@ -135,7 +146,7 @@
 				};
 			};
 			buildConfigurationList = 50140ECD2255820D009E404C /* Build configuration list for PBXProject "queryIT" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -197,8 +208,10 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-queryIT/Pods-queryIT-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-queryIT/Pods-queryIT-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -207,12 +220,14 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-queryIT/Pods-queryIT-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-queryIT/Pods-queryIT-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -222,6 +237,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5039A63C22656BD5000F1AB9 /* ConteudoRealm.swift in Sources */,
 				50140ED82255820E009E404C /* ViewController.swift in Sources */,
 				50140ED62255820E009E404C /* AppDelegate.swift in Sources */,
 				502E210C225ACD0900BE82B0 /* Conteudo.swift in Sources */,

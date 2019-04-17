@@ -18,6 +18,9 @@
 		5039A638226566DF000F1AB9 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5039A637226566DF000F1AB9 /* Realm.framework */; };
 		5039A63A226566DF000F1AB9 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5039A639226566DF000F1AB9 /* RealmSwift.framework */; };
 		5039A63C22656BD5000F1AB9 /* ConteudoRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5039A63B22656BD5000F1AB9 /* ConteudoRealm.swift */; };
+		5039A64022657912000F1AB9 /* FavoritosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5039A63F22657912000F1AB9 /* FavoritosTableViewController.swift */; };
+		5039A6422266D6EE000F1AB9 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5039A6412266D6EE000F1AB9 /* FirebaseCore.framework */; };
+		5039A6442266D6EE000F1AB9 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5039A6432266D6EE000F1AB9 /* FirebaseDatabase.framework */; };
 		E8D60EE3B5130D56217B9FA5 /* Pods_queryIT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC6782CB762BFE0E7D47C482 /* Pods_queryIT.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +39,9 @@
 		5039A637226566DF000F1AB9 /* Realm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Realm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5039A639226566DF000F1AB9 /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5039A63B22656BD5000F1AB9 /* ConteudoRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConteudoRealm.swift; sourceTree = "<group>"; };
+		5039A63F22657912000F1AB9 /* FavoritosTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritosTableViewController.swift; sourceTree = "<group>"; };
+		5039A6412266D6EE000F1AB9 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5039A6432266D6EE000F1AB9 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CB22C7EB7DCFF5DB7E419FD /* Pods-queryIT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-queryIT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-queryIT/Pods-queryIT.debug.xcconfig"; sourceTree = "<group>"; };
 		CC6782CB762BFE0E7D47C482 /* Pods_queryIT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_queryIT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -45,6 +51,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5039A6422266D6EE000F1AB9 /* FirebaseCore.framework in Frameworks */,
+				5039A6442266D6EE000F1AB9 /* FirebaseDatabase.framework in Frameworks */,
 				5039A638226566DF000F1AB9 /* Realm.framework in Frameworks */,
 				5039A63A226566DF000F1AB9 /* RealmSwift.framework in Frameworks */,
 				E8D60EE3B5130D56217B9FA5 /* Pods_queryIT.framework in Frameworks */,
@@ -57,6 +65,8 @@
 		48E166BDB3B5E0CA72A39FB7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5039A6412266D6EE000F1AB9 /* FirebaseCore.framework */,
+				5039A6432266D6EE000F1AB9 /* FirebaseDatabase.framework */,
 				5039A637226566DF000F1AB9 /* Realm.framework */,
 				5039A639226566DF000F1AB9 /* RealmSwift.framework */,
 				CC6782CB762BFE0E7D47C482 /* Pods_queryIT.framework */,
@@ -89,6 +99,7 @@
 				50140ED72255820E009E404C /* ViewController.swift */,
 				502E210B225ACD0900BE82B0 /* Conteudo.swift */,
 				50140ED92255820E009E404C /* Main.storyboard */,
+				5039A63F22657912000F1AB9 /* FavoritosTableViewController.swift */,
 				502E2109225A982300BE82B0 /* DetalheViewController.swift */,
 				50140EDC22558248009E404C /* Assets.xcassets */,
 				50140EDE22558248009E404C /* LaunchScreen.storyboard */,
@@ -242,6 +253,7 @@
 				50140ED62255820E009E404C /* AppDelegate.swift in Sources */,
 				502E210C225ACD0900BE82B0 /* Conteudo.swift in Sources */,
 				502E210A225A982300BE82B0 /* DetalheViewController.swift in Sources */,
+				5039A64022657912000F1AB9 /* FavoritosTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

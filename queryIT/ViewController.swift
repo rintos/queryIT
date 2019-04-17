@@ -10,10 +10,11 @@ import UIKit
 import Firebase
 import RealmSwift
 
+
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    
+
     var dadosLista = [Conteudo]()
     
     //referencia para instanciar/chamar dados firebse
@@ -44,12 +45,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 if let dadosTitulo = dadosObjeto?["titulo"]{
                     if let dadosTexto = dadosObjeto?["texto"]{
                         let textos = Conteudo(titulo: dadosTitulo as? String, texto: dadosTexto as? String)
-                        
-                        var contextoRealm = ConteudoRealm()
-                        contextoRealm.titulo = dadosTitulo as? String
-                        contextoRealm.texto = dadosTexto as? String
-                        contextoRealm.writeToRealm()
-                        print(contextoRealm)
+
                         self.dadosLista.append(textos)
                         self.tableView.reloadData()
                     }
@@ -91,8 +87,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         dado = dadosLista[indexPath.row]
         
         if let viewDestino = self.storyboard?.instantiateViewController(withIdentifier: "DetalheViewController") as? DetalheViewController {
-            viewDestino.texto = dado.texto!
-            viewDestino.titulo = dado.titulo!
+            viewDestino.conteudo.texto = dado.texto
+            viewDestino.conteudo.titulo = dado.titulo
             self.navigationController!.pushViewController(viewDestino, animated: true)
         }
     }

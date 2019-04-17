@@ -7,24 +7,43 @@
 //
 
 import UIKit
+import RealmSwift
 
 class DetalheViewController: UIViewController {
     
     @IBOutlet weak var tituloLabel: UILabel!
     @IBOutlet weak var textoTextView: UITextView!
     
-    var titulo: String = ""
-    var texto: String = ""
+    var conteudo = ConteudoRealm()
  
     override func viewDidLoad() {
         super.viewDidLoad()
         
 
-        self.tituloLabel.text = titulo
-        self.textoTextView.text = texto
+        self.tituloLabel.text = conteudo.titulo
+        self.textoTextView.text = conteudo.texto
 
     }
     
+    func salvarDados(){
+        let realm = try! Realm()
+        
+        let contexto = ConteudoRealm()
+        contexto.titulo = conteudo.titulo
+        contexto.texto = conteudo.texto
+        
+        try! realm.write {
+            realm.add(contexto, update: true)
+        }
+    }
+    
+    @IBAction func salvarRealm(_ sender: Any) {
 
+        salvarDados()
+        print("dados Salvos no Realm com sucesso")
+        navigationController?.popToRootViewController(animated: true)
+        
+    }
 
+    
 }

@@ -12,12 +12,18 @@ import RealmSwift
 class ConteudoRealm: Object {
     @objc dynamic var titulo: String? = nil
     @objc dynamic var texto: String? = nil
-}
-
-extension ConteudoRealm {
-    func writeToRealm(){
-        try! uiRealm.write {
-            uiRealm.add(self)
-        }
+    
+    override static func primaryKey() -> String? {
+        return "titulo"
     }
 }
+
+
+
+//extension ConteudoRealm {
+//    func writeToRealm(){
+//        try! uiRealm.write {
+//            uiRealm.add(self, update: true)
+//        }
+//    }
+//}

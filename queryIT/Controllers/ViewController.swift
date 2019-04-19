@@ -17,7 +17,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     var dadosLista = [Conteudo]()
     
-    //referencia para instanciar/chamar dados firebse
+    //referencia para instanciar/chamar dados firebase
     var referencia: DatabaseReference?
     
     //listener
@@ -36,32 +36,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         referencia = Database.database().reference()
         
         //listener do campo DetailTexto do tableView
-        textoDataBaseHandle = referencia?.child("contexto").observe(DataEventType.value, with: { (snapshot) in if snapshot.childrenCount > 0 {
+        textoDataBaseHandle = referencia?.child("contexto").observe(DataEventType.value, with: { snapshot in
             
-          //  let contextoConteudo = snapshot.value as? NSDictionary
-            
-            for dados in snapshot.children.allObjects as! [DataSnapshot]{
-                let dadosObjeto = dados.value as? [String: AnyObject]
-                if let dadosTitulo = dadosObjeto?["titulo"]{
-                    if let dadosTexto = dadosObjeto?["texto"]{
-                        let textos = Conteudo(titulo: dadosTitulo as? String, texto: dadosTexto as? String)
+                for dados in snapshot.children.allObjects as! [DataSnapshot]{
+                    let dadosObjeto = dados.value as? [String: AnyObject]
+                    if let dadosTitulo = dadosObjeto?["titulo"]{
+                        if let dadosTexto = dadosObjeto?["texto"]{
+                            let textos = Conteudo(titulo: dadosTitulo as? String, texto: dadosTexto as? String)
 
-                        self.dadosLista.append(textos)
-                        self.tableView.reloadData()
+                            self.dadosLista.append(textos)
+                            self.tableView.reloadData()
+                        }
                     }
+                   
                 }
-               
-            }
-            
-        }
 
-    })
+        })
 
-//        //Adicionando dados no RealtimeDataBase
-//        let dadosTitulo = referencia?.child("contexto").child("005").child("titulo")
-//        let dadosTexto = referencia?.child("contexto").child("005").child("texto")
-//        dadosTexto?.setValue("Alterei o indice do detalhe para indexPath.row pra funcionar")
-//        dadosTitulo?.setValue("erro ao listar")
+        //Adicionando dados no RealtimeDataBase
+//        let dadosTitulo = referencia?.child("contexto").childByAutoId().child("titulo")
+//        let dadosTexto = referencia?.child("contexto").childByAutoId().child("texto")
+//        dadosTexto?.setValue("estou com meu dedo indicador doendo")
+//        dadosTitulo?.setValue("consequencia da repeticao do dedo")
 
     }
     

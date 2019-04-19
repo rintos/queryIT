@@ -19,7 +19,6 @@ class DetalheViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
         self.tituloLabel.text = conteudo.titulo
         self.textoTextView.text = conteudo.texto
 

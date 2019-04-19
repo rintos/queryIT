@@ -95,19 +95,43 @@
 		50140ED42255820E009E404C /* queryIT */ = {
 			isa = PBXGroup;
 			children = (
+				501D534922694A44001B3990 /* Controllers */,
+				501D534822694A38001B3990 /* Views */,
+				501D53472269498B001B3990 /* Models */,
 				50140ED52255820E009E404C /* AppDelegate.swift */,
-				50140ED72255820E009E404C /* ViewController.swift */,
-				502E210B225ACD0900BE82B0 /* Conteudo.swift */,
-				50140ED92255820E009E404C /* Main.storyboard */,
-				5039A63F22657912000F1AB9 /* FavoritosTableViewController.swift */,
-				502E2109225A982300BE82B0 /* DetalheViewController.swift */,
 				50140EDC22558248009E404C /* Assets.xcassets */,
 				50140EDE22558248009E404C /* LaunchScreen.storyboard */,
 				50140EE122558248009E404C /* Info.plist */,
 				50140EE922558332009E404C /* GoogleService-Info.plist */,
-				5039A63B22656BD5000F1AB9 /* ConteudoRealm.swift */,
 			);
 			path = queryIT;
+			sourceTree = "<group>";
+		};
+		501D53472269498B001B3990 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				502E210B225ACD0900BE82B0 /* Conteudo.swift */,
+				5039A63B22656BD5000F1AB9 /* ConteudoRealm.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		501D534822694A38001B3990 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				50140ED92255820E009E404C /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		501D534922694A44001B3990 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				50140ED72255820E009E404C /* ViewController.swift */,
+				5039A63F22657912000F1AB9 /* FavoritosTableViewController.swift */,
+				502E2109225A982300BE82B0 /* DetalheViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		DAA6CC4D9B21546FED40BF9A /* Pods */ = {

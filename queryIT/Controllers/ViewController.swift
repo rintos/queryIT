@@ -25,7 +25,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.tabBarController?.tabBar.isHidden = false
         //criando a referencia
         referencia = Database.database().reference()
         
@@ -84,6 +84,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.navigationController!.pushViewController(viewDestino, animated: true)
         }
     }
+    
     
 }
 

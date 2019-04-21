@@ -15,7 +15,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     @IBOutlet weak var tableView: UITableView!
 
-    var dadosLista = [Conteudo]()
+    var listaContexto = [ConteudoRealm]()
     
     //referencia para instanciar/chamar dados firebase
     var referencia: DatabaseReference?
@@ -23,15 +23,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //listener
     var textoDataBaseHandle: DatabaseHandle?
     
-//    var lista = [(titulo: "Endereco IP", texto: "Digite o comando ifconfig no terminal e tecle enter"),
-//               (titulo: "Atalho selecionar", texto: "shift + optional seta para cima ou para baixo")]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        tableView.delegate = self
-//        tableView.dataSource = self
-       
         //criando a referencia
         referencia = Database.database().reference()
         
@@ -42,9 +36,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     let dadosObjeto = dados.value as? [String: AnyObject]
                     if let dadosTitulo = dadosObjeto?["titulo"]{
                         if let dadosTexto = dadosObjeto?["texto"]{
-                            let textos = Conteudo(titulo: dadosTitulo as? String, texto: dadosTexto as? String)
-
-                            self.dadosLista.append(textos)
+                            let textos = ConteudoRealm()
+                            textos.titulo = dadosTitulo as? String
+                            textos.texto = dadosTexto as? String
+                            self.listaContexto.append(textos)
                             self.tableView.reloadData()
                         }
                     }
@@ -53,23 +48,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         })
 
+        //metodo nao seguro / nao recomendado
         //Adicionando dados no RealtimeDataBase
 //        let dadosTitulo = referencia?.child("contexto").childByAutoId().child("titulo")
 //        let dadosTexto = referencia?.child("contexto").childByAutoId().child("texto")
-//        dadosTexto?.setValue("estou com meu dedo indicador doendo")
-//        dadosTitulo?.setValue("consequencia da repeticao do dedo")
+//        dadosTexto?.setValue("Domingo")
+//        dadosTitulo?.setValue("Domingo texto 01 01")
 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dadosLista.count;
+        return listaContexto.count;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let celula = tableView.dequeueReusableCell(withIdentifier: "celulaID", for: indexPath)
         
-        let dado:Conteudo
-        dado = dadosLista[indexPath.row]
+        let dado:ConteudoRealm
+        dado = listaContexto[indexPath.row]
         celula.textLabel?.text = dado.titulo
         celula.detailTextLabel?.text = dado.texto
         
@@ -79,8 +75,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         self.tableView.deselectRow(at: indexPath, animated: true)
-        let dado: Conteudo
-        dado = dadosLista[indexPath.row]
+        let dado: ConteudoRealm
+        dado = listaContexto[indexPath.row]
         
         if let viewDestino = self.storyboard?.instantiateViewController(withIdentifier: "DetalheViewController") as? DetalheViewController {
             viewDestino.conteudo.texto = dado.texto

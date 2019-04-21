@@ -127,7 +127,7 @@
         <!--Favoritos Table View Controller-->
         <scene sceneID="aIl-M1-tCT">
             <objects>
-                <tableViewController id="2bL-fh-m1d" customClass="FavoritosTableViewController" customModule="queryIT" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="favoritoID" id="2bL-fh-m1d" customClass="FavoritosTableViewController" customModule="queryIT" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="HVs-7s-HbM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -163,10 +163,12 @@
                             <outlet property="delegate" destination="2bL-fh-m1d" id="Xr9-SL-mPU"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lJl-3Z-csJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1710" y="837"/>
+            <point key="canvasLocation" x="1388" y="945"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="e0f-yo-pzY">

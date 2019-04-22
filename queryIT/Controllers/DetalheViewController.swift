@@ -40,8 +40,6 @@ class DetalheViewController: UIViewController {
 
         salvarDados()
         print("dados Salvos no Realm com sucesso")
-//        let viewDestino = self.storyboard?.instantiateViewController(withIdentifier: "favoritoID") as! FavoritosTableViewController
-//        self.navigationController?.pushViewController(viewDestino, animated: true)
         navigationController?.popToRootViewController(animated: true)
     }
 

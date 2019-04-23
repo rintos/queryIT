@@ -14,6 +14,7 @@ class DetalheViewController: UIViewController {
     @IBOutlet weak var tituloLabel: UILabel!
     @IBOutlet weak var textoTextView: UITextView!
     
+    
     var conteudo = ConteudoRealm()
     
     override func viewDidLoad() {
@@ -24,6 +25,12 @@ class DetalheViewController: UIViewController {
 
     }
     
+    @IBAction func shareConteudo (_ sender: Any) {
+        let activityController = UIActivityViewController(activityItems: [conteudo.titulo as Any, conteudo.texto as Any], applicationActivities: nil)
+
+        present(activityController , animated: true)
+    }
+        
     func salvarDados(){
         let realm = try! Realm()
         

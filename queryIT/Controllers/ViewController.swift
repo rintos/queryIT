@@ -15,6 +15,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     @IBOutlet weak var tableView: UITableView!
 
+    @IBOutlet weak var viewButtonSalvar: UIView!
+    
     var listaContexto = [ConteudoRealm]()
     
     //referencia para instanciar/chamar dados firebase

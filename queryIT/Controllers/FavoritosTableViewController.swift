@@ -18,6 +18,7 @@ class FavoritosTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         contextos = realm.objects(ConteudoRealm.self)
         self.tableView.reloadData()
+        
     }
     
     override func viewDidLoad() {

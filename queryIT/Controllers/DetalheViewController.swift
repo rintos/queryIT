@@ -14,6 +14,9 @@ class DetalheViewController: UIViewController {
     @IBOutlet weak var tituloLabel: UILabel!
     @IBOutlet weak var textoTextView: UITextView!
     
+    @IBOutlet weak var viewButtonSalvar: UIView!
+    @IBOutlet weak var viewTextView: UIView!
+    
     
     var conteudo = ConteudoRealm()
     
@@ -22,6 +25,9 @@ class DetalheViewController: UIViewController {
        // self.tabBarController?.tabBar.isHidden = true
         self.tituloLabel.text = conteudo.titulo
         self.textoTextView.text = conteudo.texto
+        
+        self.viewButtonSalvar.layer.cornerRadius = 10
+        self.viewTextView.layer.cornerRadius = 10
 
     }
     
